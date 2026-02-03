@@ -15,6 +15,26 @@
             Console.WriteLine(numbers.Sum());
             //average
             Console.WriteLine(numbers.Average());
+
+            Console.WriteLine("---------------");
+            Console.WriteLine("Sorteerib numbrid alates väiksemast suuremani.");
+
+            //Peate kasutama Array ja Sort ning foreach
+            Array.Sort(numbers);
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine("---------------");
+            Console.WriteLine("Sorteerib numbrid alates suuremast väiksemani.");
+
+            //sorteerib numbrid alates suuremast väiksemani
+            Array.Sort(numbers);
+            Array.Reverse(numbers);
+            foreach(var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
         }
     }
 }
