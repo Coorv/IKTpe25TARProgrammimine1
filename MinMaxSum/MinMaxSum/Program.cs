@@ -29,7 +29,6 @@
             Console.WriteLine("Sorteerib numbrid alates suuremast väiksemani.");
 
             //sorteerib numbrid alates suuremast väiksemani
-            Array.Sort(numbers);
             Array.Reverse(numbers);
             foreach(var number in numbers)
             {
