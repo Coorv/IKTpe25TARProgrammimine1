@@ -6,7 +6,7 @@
         {
             Console.WriteLine("List numbrites");
 
-            int[] numbers = new int[10] { 1, 3, 14, 17, 6, 2, 8, 12, 24, 69 };
+            int[] numbers = new int[10] { 1, 3, 14, 14, 6, 2, 8, 12, 24, 69 };
             //max
             Console.WriteLine(numbers.Max());
             //min
@@ -34,6 +34,10 @@
             {
                 Console.WriteLine(number);
             }
+            //KASUTATE binarysearch-i
+            //kirjuta lühidalt mis see tähendab
+            Console.WriteLine("---------------");
+            Console.WriteLine(Array.BinarySearch(numbers, 122));
         }
     }
 }
