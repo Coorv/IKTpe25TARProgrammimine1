@@ -33,7 +33,11 @@
             Console.WriteLine("----------------------");
             Console.WriteLine("Kasutame LINQ Selecti ehk teine variant");
             //siin koondame kogu info result muutuja sisse
-            var result = person.Select(x => new
+            var result = person
+                //Where-iga saab teha konkreetse päringu, et vastab mingitele tingimustele
+                .Where(p => p.Id == 1 || p.Age == 9)
+                .OrderBy(p => p.Name) //järjestab isikud nime järgi
+                .Select(x => new
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -45,6 +49,16 @@
             foreach (var item in result)
             {
                 Console.WriteLine("Id on " + item.Id + " ja nimi on " + item.Name);
+            }
+            Console.WriteLine("----------------------");
+            Console.WriteLine("Gruppide kaupa sorteerimine");
+            var groupBy = person
+                .GroupBy(p => p.Age);
+            //kuvab gruppida kaupa ja antud juhul paneb vanuse gruppidesse
+            // e tulemuseks on kolm rida andmeid kuna ka kaks isikut on 9 a.
+            foreach (var item in groupBy)
+            {
+                Console.WriteLine("Vanuse grupp on: {0}");
             }
         }
     }
