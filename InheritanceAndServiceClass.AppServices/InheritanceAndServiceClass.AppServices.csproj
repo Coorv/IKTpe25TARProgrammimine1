@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InheritanceAndServiceClass.Core\InheritanceAndServiceClass.Core.csproj" />
-    <ProjectReference Include="..\InheritanceAndServiceClass\InheritanceAndServiceClass.csproj" />
   </ItemGroup>
 
 </Project>
