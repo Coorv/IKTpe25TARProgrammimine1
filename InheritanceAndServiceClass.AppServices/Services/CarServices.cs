@@ -9,7 +9,6 @@ namespace InheritanceAndServiceClass.AppServices.Services
         {
             Console.WriteLine("Car Services");
         }
-
         public void PostData()
         {
             Console.WriteLine("andmed on edukalt salvestatud");

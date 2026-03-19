@@ -21,55 +21,40 @@ namespace InheritanceAndServiceClass
         static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
 
             builder.Services.AddScoped<ICarServices, CarServices>();
 
             Console.WriteLine("Hello, World switch!");
             int choice = int.Parse(Console.ReadLine());
             Console.WriteLine("Mida tahad teha? 1 on GetData, 2 on PostData, 3 on Putdata, 4 on DeleteData");
-            switch (choice)
+            
+            using (var scope = app.Services.CreateScope())
             {
-                case 1:
-                    var app = builder.Build();
-                    using (var scope = app.Services.CreateScope())
-                    {
-                        var carServices = scope.ServiceProvider.GetRequiredService<ICarServices>();
-                        var program = new Program(carServices);
+                var carServices = scope.ServiceProvider.GetRequiredService<ICarServices>();
+                var program = new Program(carServices);
+                switch (choice)
+                {
+                    
+                    case 1:
                         program.GetAsync();
-                    }
-                    break;
-                case 2:
-                    app = builder.Build();
-                    using (var scope = app.Services.CreateScope())
-                    {
-                        var carServices = scope.ServiceProvider.GetRequiredService<ICarServices>();
-                        var program = new Program(carServices);
+                        break;
+                    case 2:
                         program.SaveAsync();
-                    }
-                    break;
-                case 3:
-                    app = builder.Build();
-                    using (var scope = app.Services.CreateScope())
-                    {
-                        var carServices = scope.ServiceProvider.GetRequiredService<ICarServices>();
-                        var program = new Program(carServices);
+                        break;
+                    case 3:
                         program.UpdateData();
-                    }
-                    break;
-                case 4:
-                    app = builder.Build();
-                    using (var scope = app.Services.CreateScope())
-                    {
-                        var carServices = scope.ServiceProvider.GetRequiredService<ICarServices>();
-                        var program = new Program(carServices);
-                        program.EraseData();
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Error");
-                    break;
+                        break;
+                    case 4:                       
+                            program.EraseData();
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }
             }
         }
+            
 
         public IActionResult GetAsync()
         {
