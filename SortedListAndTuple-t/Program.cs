@@ -12,10 +12,10 @@ namespace SortedListAndTuple_t
             switch (valik)
             {
                 case 1:
-                    nimekiri1();
+                    Nimekiri();
                     break;
                 case 2:
-                    nimekiri2();
+                    Tuple();
                     break;
                 default:
                     Console.WriteLine("bye");
@@ -31,7 +31,7 @@ namespace SortedListAndTuple_t
             //erinevaid andmetüüpe, kuid sellesse ei saa lisada programmi käigul rohkem
             //andmeid.
         }
-        public static void nimekiri1()
+        public static void Nimekiri()
         {
             SortedList nimekiri = new SortedList()
             {
@@ -42,7 +42,7 @@ namespace SortedListAndTuple_t
             foreach (DictionaryEntry entry in nimekiri)
                 Console.WriteLine($"{entry.Key}: {entry.Value}");
         }
-        public static void nimekiri2()
+        public static void Tuple()
         {
             (int id, string sõnum, bool IsActive) tuple =
                 (1, "Tere", true);
