@@ -21,13 +21,14 @@ namespace InheritanceAndServiceClass
         static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
 
             builder.Services.AddScoped<ICarServices, CarServices>();
 
+            var app = builder.Build();
+
             Console.WriteLine("Hello, World switch!");
-            int choice = int.Parse(Console.ReadLine());
             Console.WriteLine("Mida tahad teha? 1 on GetData, 2 on PostData, 3 on Putdata, 4 on DeleteData");
+            int choice = int.Parse(Console.ReadLine());
             
             using (var scope = app.Services.CreateScope())
             {
@@ -46,7 +47,7 @@ namespace InheritanceAndServiceClass
                         program.UpdateData();
                         break;
                     case 4:                       
-                            program.EraseData();
+                        program.EraseData();
                         break;
                     default:
                         Console.WriteLine("Error");
