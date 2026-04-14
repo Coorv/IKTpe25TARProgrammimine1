@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using University.Data;
+using Microsoft.Extensions.DependencyInjection;
+
+
 
 namespace University
 {
@@ -12,6 +15,7 @@ namespace University
             builder.Services.AddDbContext<Data.UniversityContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("UniversityContext")));
 
+
             // Add database exception filter for development environment
             // This will show detailed database errors during development
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -20,6 +24,9 @@ namespace University
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            // create DB if it doesn't exist and seed initial data
+            CreateDbIfNotExists(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
