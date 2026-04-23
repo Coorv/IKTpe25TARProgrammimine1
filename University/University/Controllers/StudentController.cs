@@ -126,5 +126,37 @@ namespace University.Controllers
             }
             return View(vm);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var student = await _context.Students
+                //Include lubab objekti kasutada objekti sees
+                .Include(s => s.Enrollments)
+                    //kui tahad uuesti objekti kasutada objekti sees, siis kasutad ThenInclude
+                    .ThenInclude(e => e.Course)
+                //Andmeid ei salvestata vahemällu ja ei jälgita
+                .AsNoTracking()
+                //Tagastab esimese elemendi, mis on tingimuses välja toodud
+                .FirstOrDefaultAsync(m => m.Id == id);
+            
+            //kui student on null, siis on not found
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new StudentUpdateViewModel
+            {
+                Id = student.Id,
+                FirstMidName = student.FirstMidName,
+                LastName = student.LastName,
+                EnrollmentDate = student.EnrollmentDate
+            };
+
+            //tuleb teha doimaini modelist andmete ülekanne view modeli omasse
+
+            return View(vm);
+        }
     }
 }
